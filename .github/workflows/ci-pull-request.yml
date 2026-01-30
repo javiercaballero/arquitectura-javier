@@ -27,10 +27,6 @@ jobs:
           distribution: temurin
           java-version: "21"
           cache: maven
-
-      #  SI UN TEST FALLA, EL PIPELINE MUERE AQUÍ
-      - name: Build and run tests
-        run: mvn -B -ntp clean verify
         
       #  SOLO SI LOS TESTS PASAN → SE EJECUTA SONAR
       - name: SonarCloud Analysis
@@ -39,7 +35,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: >
-          mvn -B -ntp sonar:sonar 
+          mvn -B -ntp verify
+          org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
           -Dsonar.organization=javiercaballero
           -Dsonar.projectKey=javiercaballero_arquitectura-javier
           -Dsonar.verbose=true
