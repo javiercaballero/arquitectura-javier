@@ -37,11 +37,13 @@ jobs:
         env:
           # SonarScanner for Maven picks up SONAR_TOKEN automatically
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: >
           mvn -B -ntp sonar:sonar 
           org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
           -Dsonar.organization=javiercaballero
           -Dsonar.projectKey=javiercaballero_arquitectura-javier
+          -Dsonar.host.url=$SONAR_HOST_URL
           -Dsonar.verbose=true
           -Dsonar.qualitygate.wait=true
 
