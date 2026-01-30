@@ -2,13 +2,13 @@ name: CI
 
 on:
   push:
-    branches: ["feature/*"]
+    branches: ["main", "master", "feature/*"]
 
 permissions:
   contents: read
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: sonar-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -38,5 +38,5 @@ jobs:
           org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
           -Dsonar.host.url=$SONAR_HOST_URL
           -Dsonar.organization=javiercaballero
-          -Dsonar.projectKey=javiercaballero
+          -Dsonar.projectKey=javiercaballero_arquitectura-javier
           -Dsonar.verbose=true
