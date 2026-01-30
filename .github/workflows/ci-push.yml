@@ -28,15 +28,15 @@ jobs:
           java-version: "21"
           cache: maven
 
-      - name: Build and test (Maven)
-        run: mvn -B -ntp verify
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v7.0.0
+      - name: Build, test and analyze (SonarCloud)
         env:
+          # SonarScanner for Maven picks up SONAR_TOKEN automatically
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        with:
-          args: >
-            -Dsonar.projectKey=javiercaballero
-            -Dsonar.organization=javiercaballero
+        run: >
+          mvn -B -ntp verify
+          org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+          -Dsonar.host.url=$SONAR_HOST_URL
+          -Dsonar.organization=javiercaballero
+          -Dsonar.projectKey=javiercaballero
+          -Dsonar.verbose=true
