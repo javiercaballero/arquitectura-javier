@@ -40,7 +40,6 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: >
           mvn -B -ntp sonar:sonar 
-          org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
           -Dsonar.organization=javiercaballero
           -Dsonar.projectKey=javiercaballero_arquitectura-javier
           -Dsonar.host.url=$SONAR_HOST_URL
