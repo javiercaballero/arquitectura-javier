@@ -42,7 +42,6 @@ jobs:
           mvn -B -ntp sonar:sonar 
           -Dsonar.organization=javiercaballero
           -Dsonar.projectKey=javiercaballero_arquitectura-javier
-          -Dsonar.host.url=$SONAR_HOST_URL
           -Dsonar.verbose=true
           -Dsonar.qualitygate.wait=true
 
